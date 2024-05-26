@@ -1,0 +1,25 @@
+@import "variables";
+
+@font-face {
+  font-family: $application-font;
+  src: url(../../assets/fonts/YekanBakh-Regular.woff2);
+  font-weight: $font-regular;
+}
+
+@font-face {
+  font-family: $application-font;
+  src: url(../../assets/fonts/YekanBakh-SemiBold.woff2);
+  font-weight: $font-semi-bold;
+}
+
+@font-face {
+  font-family: $application-font;
+  src: url(../../assets/fonts/YekanBakh-Bold.woff2);
+  font-weight: $font-bold;
+}
+
+@font-face {
+  font-family: $application-font;
+  src: url(../../assets/fonts/YekanBakh-ExtraBold.woff2);
+  font-weight: $font-extra-bold;
+}

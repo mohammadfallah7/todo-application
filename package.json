@@ -1,0 +1,26 @@
+{
+  "name": "todo-application",
+  "version": "1.0.0",
+  "description": "![](./design/cover.png)",
+  "main": "./src/scripts/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohammadfallah7/todo-application.git"
+  },
+  "author": "Mohammad Fallah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohammadfallah7/todo-application/issues"
+  },
+  "homepage": "https://github.com/mohammadfallah7/todo-application#readme",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}

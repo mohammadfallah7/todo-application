@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "Yekan Bakh";
+  src: url(../../assets/fonts/YekanBakh-Regular.woff2);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Yekan Bakh";
+  src: url(../../assets/fonts/YekanBakh-SemiBold.woff2);
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Yekan Bakh";
+  src: url(../../assets/fonts/YekanBakh-Bold.woff2);
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Yekan Bakh";
+  src: url(../../assets/fonts/YekanBakh-ExtraBold.woff2);
+  font-weight: 800;
+}
+* {
+  font-family: "Yekan Bakh";
+}/*# sourceMappingURL=style.css.map */
