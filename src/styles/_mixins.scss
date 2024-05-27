@@ -1,0 +1,16 @@
+@import "variables";
+
+@mixin font-bold16 {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+@mixin font-nav-item($color: #525252, $font-size: 14px) {
+  font-weight: 600;
+  font-size: $font-size;
+  color: $color;
+}
+
+@mixin logo-nav-item($color: #525252) {
+  color: $color;
+}

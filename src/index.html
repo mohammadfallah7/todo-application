@@ -9,7 +9,100 @@
       src="https://kit.fontawesome.com/c448ef04f4.js"
       crossorigin="anonymous"
     ></script>
-    <script src="scripts/index.js" defer></script>
   </head>
-  <body></body>
+  <body id="application" class="bg-[#FEFEFE]">
+    <header class="header">
+      <div class="header__wrapper">
+        <div class="header__inner container bg-white shadow">
+          <button id="toggle-menu" class="header__inner__nav">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <a href="index.html" class="header__inner__logo">کوئرا لیست</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="overlay-menu"></div>
+
+    <nav id="menu" class="navbar">
+      <section class="navbar__header">
+        <a href="index.html" class="navbar__header__logo">کوئرا لیست</a>
+        <button id="collapse-menu" class="navbar__header__action">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </section>
+
+      <section class="navbar__actions">
+        <ul class="navbar__actions__list">
+          <li class="navbar__actions__list__item">
+            <i class="fa-solid fa-house navbar__actions__list__item__logo"></i>
+            <span class="navbar__actions__list__item__title">خانه</span>
+          </li>
+          <li class="navbar__actions__list__item">
+            <i
+              class="fa-solid fa-list-check navbar__actions__list__item__logo"
+            ></i>
+            <span class="navbar__actions__list__item__title">تسک ها</span>
+          </li>
+          <li class="navbar__actions__list__item">
+            <i
+              class="fa-solid fa-calendar-days navbar__actions__list__item__logo"
+            ></i>
+            <span class="navbar__actions__list__item__title">تقویم</span>
+          </li>
+          <li class="navbar__actions__list__item">
+            <i
+              class="fa-solid fa-chart-line navbar__actions__list__item__logo"
+            ></i>
+            <span class="navbar__actions__list__item__title">گزارشات</span>
+          </li>
+          <li class="navbar__actions__list__item">
+            <i class="fa-solid fa-gear navbar__actions__list__item__logo"></i>
+            <span class="navbar__actions__list__item__title">تنظیمات</span>
+          </li>
+          <li class="navbar__actions__list__item">
+            <i
+              class="fa-solid fa-headset navbar__actions__list__item__logo"
+            ></i>
+            <span class="navbar__actions__list__item__title">پشتیبانی</span>
+          </li>
+          <li class="navbar__actions__list__item">
+            <i class="fa-solid fa-user navbar__actions__list__item__logo"></i>
+            <span class="navbar__actions__list__item__title">پروفایل</span>
+          </li>
+        </ul>
+
+        <div class="navbar__actions__footer">
+          <div class="navbar__actions__footer__theme">
+            <button
+              id="light-theme"
+              class="navbar__actions__footer__theme__item active-toggle-theme"
+            >
+              <i class="fa-solid fa-sun"></i>
+              <span>روشن</span>
+            </button>
+            <button
+              id="dark-theme"
+              class="navbar__actions__footer__theme__item"
+            >
+              <i class="fa-solid fa-moon"></i>
+              <span>تاریک</span>
+            </button>
+          </div>
+
+          <hr />
+
+          <div class="navbar__actions__footer__logout">
+            <i
+              class="fa-solid fa-arrow-right-from-bracket navbar__actions__footer__logout__logo"
+            ></i>
+            <span class="navbar__actions__footer__logout__title">خروج</span>
+          </div>
+        </div>
+      </section>
+    </nav>
+
+    <script src="scripts/index.js"></script>
+  </body>
 </html>

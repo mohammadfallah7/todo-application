@@ -1,5 +1,22 @@
 @import "variables";
+@import "mixins";
 
 * {
   font-family: $application-font;
+}
+
+.active-toggle-theme {
+  background-color: #fff;
+
+  i {
+    @include logo-nav-item;
+  }
+
+  span {
+    @include font-nav-item;
+  }
+}
+
+.show-menu {
+  display: unset !important;
 }
