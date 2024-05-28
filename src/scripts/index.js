@@ -12,9 +12,7 @@ function handleToggleMenu() {
 }
 
 toggleMenu.addEventListener("click", handleToggleMenu());
-
 collapseMenu.addEventListener("click", handleToggleMenu());
-
 overlayMenu.addEventListener("click", handleToggleMenu());
 
 // Handle toggle theme
@@ -25,11 +23,40 @@ darkTheme.addEventListener("click", () => {
   lightTheme.classList.remove("active-toggle-theme");
   darkTheme.classList.add("active-toggle-theme");
 });
-
 lightTheme.addEventListener("click", () => {
   darkTheme.classList.remove("active-toggle-theme");
   lightTheme.classList.add("active-toggle-theme");
 });
+
+// Handle Date
+const todayDate = document.getElementById("today-date");
+
+function getTodayDate() {
+  const now = new Date();
+
+  return {
+    getDay() {
+      return new Intl.DateTimeFormat("fa-IR", {
+        day: "numeric",
+      }).format(now);
+    },
+
+    getMonth() {
+      return new Intl.DateTimeFormat("fa-IR", {
+        month: "short",
+      }).format(now);
+    },
+
+    getYear() {
+      return new Intl.DateTimeFormat("fa-IR", {
+        year: "numeric",
+      }).format(now);
+    },
+  };
+}
+
+const date = getTodayDate();
+todayDate.textContent = `امروز، ${date.getDay()} ${date.getMonth()} ${date.getYear()}`;
 
 // const { v4: uuidv4 } = require("uuid");
 
@@ -48,12 +75,4 @@ async function getTask() {
   } catch (error) {
     console.error(error);
   }
-}
-
-function getTodayDate() {
-  const now = new Date();
-
-  return new Intl.DateTimeFormat("fa-IR", {
-    dateStyle: "full",
-  }).format(now);
 }

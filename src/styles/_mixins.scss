@@ -14,3 +14,39 @@
 @mixin logo-nav-item($color: #525252) {
   color: $color;
 }
+
+@mixin font-extra-bold18($color: #242424) {
+  font-weight: 800;
+  font-size: 18px;
+  color: $color;
+}
+
+@mixin font-extra-bold16($color: #242424) {
+  font-weight: 800;
+  font-size: 16px;
+  color: $color;
+}
+
+@mixin font-extra-bold14($color: #242424) {
+  font-weight: 800;
+  font-size: 14px;
+  color: $color;
+}
+
+@mixin font-semi-bold14($color: #7d7d7d) {
+  font-weight: 600;
+  font-size: 14px;
+  color: $color;
+}
+
+@mixin font-semi-bold13($color: #7d7d7d) {
+  font-weight: 600;
+  font-size: 13px;
+  color: $color;
+}
+
+@mixin font-semi-bold12($color: #7d7d7d) {
+  font-weight: 600;
+  font-size: 12px;
+  color: $color;
+}
