@@ -27,6 +27,12 @@
   color: $color;
 }
 
+@mixin font-extra-bold15($color: #242424) {
+  font-weight: 800;
+  font-size: 15px;
+  color: $color;
+}
+
 @mixin font-extra-bold14($color: #242424) {
   font-weight: 800;
   font-size: 14px;
@@ -48,5 +54,23 @@
 @mixin font-semi-bold12($color: #7d7d7d) {
   font-weight: 600;
   font-size: 12px;
+  color: $color;
+}
+
+@mixin font-regular13($color: #696969) {
+  font-weight: 400;
+  font-size: 13px;
+  color: $color;
+}
+
+@mixin font-regular12($color: #696969) {
+  font-weight: 400;
+  font-size: 12px;
+  color: $color;
+}
+
+@mixin font-regular11($color: #696969) {
+  font-weight: 400;
+  font-size: 11px;
   color: $color;
 }
