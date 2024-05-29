@@ -448,6 +448,31 @@
           font-size: 1.25rem;
         }
       }
+
+      &__modify {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        top: 2.25rem;
+        left: 0.75rem;
+        z-index: 10;
+        border-radius: $rounded-md;
+        width: 5rem;
+        padding: 0.25rem 0.5rem;
+        background-color: white;
+        border: 1px solid #ebedef;
+
+        &__action {
+          display: flex;
+          align-items: center;
+
+          i {
+            color: #5c5f61;
+            font-size: 16px;
+          }
+        }
+      }
     }
   }
 }

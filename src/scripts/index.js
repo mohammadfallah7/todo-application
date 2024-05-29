@@ -65,6 +65,36 @@ function getTodayDate() {
 const date = getTodayDate();
 todayDate.textContent = `امروز، ${date.getDay()} ${date.getMonth()} ${date.getYear()}`;
 
+// Handle Update Task
+function updateTask(id, title, description, priority, isDone = false) {
+  const baseUrl = "http://localhost:3000/tasks/";
+
+  return fetch(`${baseUrl}${id}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      title: title,
+      description: description,
+      priority: priority,
+      isDone: isDone,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+}
+
+// Handle Delete Task
+function deleteTask(id) {
+  const baseUrl = "http://localhost:3000/tasks/";
+
+  return fetch(`${baseUrl}${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+}
+
 // Handle get task
 function fetchTask() {
   const baseUrl = "http://localhost:3000/tasks/";
@@ -77,8 +107,8 @@ async function getTask() {
     const response = await fetchTask();
     const data = await response.json();
 
-    const completedTask = data.filter((task) => task.isCompleted);
-    const notCompletedTask = data.filter((task) => !task.isCompleted);
+    const completedTask = data.filter((task) => task.isDone);
+    const notCompletedTask = data.filter((task) => !task.isDone);
 
     const completedTaskLength = completedTask.length;
     const notCompletedTaskLength = notCompletedTask.length;
@@ -132,7 +162,7 @@ async function getTask() {
         notCompletedTaskItem.innerHTML = `
         <div class="task__list__item__content">
           <div id="pri-bg" class="task__list__item__content__priority"></div>
-          <button class="task__list__item__content__select"></button>
+          <button id="task-done" class="task__list__item__content__select"></button>
           <div class="task__list__item__content__information">
             <h2 class="task__list__item__content__information__title">
               ${task.title}
@@ -147,9 +177,10 @@ async function getTask() {
             </p>
           </div>
         </div>
-        <button class="task__list__item__action">
+        <button id="task-action" class="task__list__item__action">
           <i class="fa-solid fa-ellipsis-vertical"></i>
-        </button>`;
+        </button>
+        `;
 
         let priBg = notCompletedTaskItem.querySelector("#pri-bg");
         priBg.style.backgroundColor = priorityColor;
@@ -158,10 +189,51 @@ async function getTask() {
         priLabel.style.backgroundColor = priorityBg;
         priLabel.style.color = priorityColor;
 
+        let taskDone = notCompletedTaskItem.querySelector("#task-done");
+        taskDone.addEventListener("click", async () => {
+          await updateTask(
+            task.id,
+            task.title,
+            task.description,
+            task.priority,
+            true
+          );
+
+          await getTask();
+        });
+
+        let taskAction = notCompletedTaskItem.querySelector("#task-action");
+        let taskModify = document.createElement("div");
+        taskModify.id = "task-modify";
+        taskModify.className = "task__list__item__modify shadow";
+        taskModify.innerHTML = `
+          <button id="delete-task" class="task__list__item__modify__action">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+          <button id="edit-task" class="task__list__item__modify__action">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+        `;
+
+        taskAction.addEventListener("click", () => {
+          taskModify.classList.toggle("show");
+
+          if (taskModify.classList.contains("show")) {
+            notCompletedTaskItem.appendChild(taskModify);
+          } else {
+            notCompletedTaskItem.removeChild(taskModify);
+          }
+        });
+
+        let deleteTaskItem = taskModify.querySelector("#delete-task");
+        deleteTaskItem.addEventListener("click", async () => {
+          await deleteTask(task.id);
+
+          await getTask();
+        });
+
         taskFragment.appendChild(notCompletedTaskItem);
       });
-
-      console.log(taskFragment);
 
       notCompletedTaskList.appendChild(taskFragment);
     }
