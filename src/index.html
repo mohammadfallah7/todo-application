@@ -129,81 +129,12 @@
               <h3 class="task__title--large">تسک های امروز</h3>
               <span id="count-task" class="task__title--small"></span>
             </div>
-
             <button id="add-task" class="task__add">
               <i class="fa-solid fa-plus task__add__icon"></i>
               <span class="task__add__title">افزودن وظیفه جدید</span>
             </button>
-
-            <!-- <div id="create-task-container" class="task__create shadow">
-              <input
-                class="task__create__title"
-                type="text"
-                name="title"
-                id="task-title"
-                placeholder="نام تسک"
-              />
-              <textarea
-                class="task__create__description"
-                name="description"
-                id="task-description"
-                placeholder="توضیحات"
-              ></textarea>
-              <button id="select-tag" class="task__create__tags">
-                <i class="fa-solid fa-tag"></i>
-                <span>تگ ها</span>
-              </button>
-              <div
-                id="tag-container"
-                class="task__create__select shadow show-select-tag"
-              >
-                <button
-                  data-priority="low"
-                  id="priority-low"
-                  class="task__create__select__item task__create__select--low"
-                >
-                  پایین
-                </button>
-                <button
-                  data-priority="medium"
-                  id="priority-medium"
-                  class="task__create__select__item task__create__select--medium"
-                >
-                  متوسط
-                </button>
-                <button
-                  data-priority="high"
-                  id="priority-high"
-                  class="task__create__select__item task__create__select--high"
-                >
-                  بالا
-                </button>
-              </div>
-              <hr />
-              <div class="task__create__actions">
-                <button id="create-task" class="task__create__actions__add">
-                  اضافه کردن تسک
-                </button>
-                <button
-                  id="collapse-create"
-                  class="task__create__actions__collapse"
-                >
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-            </div> -->
-
-            <div class="task__empty">
-              <div class="task__empty__picture">
-                <img src="../assets/images/empty-view.png" alt="Empty View" />
-              </div>
-              <h4 class="task__empty__title">
-                چه کارهایی امروز برای انجام داری؟
-              </h4>
-              <p class="task__empty__description">
-                میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع کنی!
-              </p>
-            </div>
+            <div id="empty-view" class="task__empty"></div>
+            <ul id="not-completed-task-list" class="task__list"></ul>
           </div>
         </div>
       </section>

@@ -1,9 +1,20 @@
-// Handle Toggle Menu
+// Elements
 const toggleMenu = document.getElementById("toggle-menu");
 const menu = document.getElementById("menu");
 const collapseMenu = document.getElementById("collapse-menu");
 const overlayMenu = document.querySelector(".overlay-menu");
+const lightTheme = document.getElementById("light-theme");
+const darkTheme = document.getElementById("dark-theme");
+const todayDate = document.getElementById("today-date");
+const countTask = document.getElementById("count-task");
+const todayTask = document.getElementById("today-task");
+const addTask = todayTask.querySelector("#add-task");
+const emptyView = todayTask.querySelector("#empty-view");
+const notCompletedTaskList = todayTask.querySelector(
+  "#not-completed-task-list"
+);
 
+// Handle Toggle Menu
 function handleToggleMenu() {
   return function () {
     menu.classList.toggle("show-menu");
@@ -16,9 +27,6 @@ collapseMenu.addEventListener("click", handleToggleMenu());
 overlayMenu.addEventListener("click", handleToggleMenu());
 
 // Handle toggle theme
-const lightTheme = document.getElementById("light-theme");
-const darkTheme = document.getElementById("dark-theme");
-
 function handleToggleTheme() {
   return function () {
     lightTheme.classList.toggle("active-toggle-theme");
@@ -30,8 +38,6 @@ darkTheme.addEventListener("click", handleToggleTheme());
 lightTheme.addEventListener("click", handleToggleTheme());
 
 // Handle Date
-const todayDate = document.getElementById("today-date");
-
 function getTodayDate() {
   const now = new Date();
 
@@ -60,8 +66,6 @@ const date = getTodayDate();
 todayDate.textContent = `امروز، ${date.getDay()} ${date.getMonth()} ${date.getYear()}`;
 
 // Handle get task
-const countTask = document.getElementById("count-task");
-
 function fetchTask() {
   const baseUrl = "http://localhost:3000/tasks/";
 
@@ -80,9 +84,87 @@ async function getTask() {
     const notCompletedTaskLength = notCompletedTask.length;
 
     countTask.textContent =
-      notCompletedTask == 0
+      notCompletedTaskLength == 0
         ? "تسکی برای امروز نداری!"
         : `${notCompletedTaskLength} تسک را باید انجام دهید.`;
+
+    emptyView.innerHTML =
+      notCompletedTaskLength == 0
+        ? `<div class="task__empty__picture">
+        <img src="../assets/images/empty-view.png" alt="Empty View" />
+      </div>
+      <h4 class="task__empty__title">
+        چه کارهایی امروز برای انجام داری؟
+      </h4>
+      <p class="task__empty__description">
+        میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع کنی!
+      </p>`
+        : "";
+
+    if (notCompletedTaskLength !== 0) {
+      const taskFragment = new DocumentFragment();
+
+      notCompletedTask.forEach((task) => {
+        let priorityText = "";
+        let priorityColor = "";
+        let priorityBg = "";
+
+        switch (task.priority) {
+          case "low":
+            priorityText = "پایین";
+            priorityColor = "#11a483";
+            priorityBg = "#c3fff1";
+            break;
+          case "medium":
+            priorityText = "متوسط";
+            priorityColor = "#ffaf37";
+            priorityBg = "#ffefd6";
+            break;
+          default:
+            priorityText = "بالا";
+            priorityColor = "#ff5f37";
+            priorityBg = "#ffe2db";
+            break;
+        }
+
+        let notCompletedTaskItem = document.createElement("li");
+        notCompletedTaskItem.classList.add("task__list__item");
+        notCompletedTaskItem.innerHTML = `
+        <div class="task__list__item__content">
+          <div id="pri-bg" class="task__list__item__content__priority"></div>
+          <button class="task__list__item__content__select"></button>
+          <div class="task__list__item__content__information">
+            <h2 class="task__list__item__content__information__title">
+              ${task.title}
+            </h2>
+            <span id="pri-label" class="task__list__item__content__information__label">
+              ${priorityText}
+            </span>
+            <p
+              class="task__list__item__content__information__description"
+            >
+              ${task.description}
+            </p>
+          </div>
+        </div>
+        <button class="task__list__item__action">
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </button>`;
+
+        let priBg = notCompletedTaskItem.querySelector("#pri-bg");
+        priBg.style.backgroundColor = priorityColor;
+
+        let priLabel = notCompletedTaskItem.querySelector("#pri-label");
+        priLabel.style.backgroundColor = priorityBg;
+        priLabel.style.color = priorityColor;
+
+        taskFragment.appendChild(notCompletedTaskItem);
+      });
+
+      console.log(taskFragment);
+
+      notCompletedTaskList.appendChild(taskFragment);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -110,9 +192,6 @@ function createNewTask(title, description, priority) {
 }
 
 // Handle Add Task
-const todayTask = document.getElementById("today-task");
-const addTask = todayTask.querySelector("#add-task");
-
 const createTaskDiv = document.createElement("div");
 createTaskDiv.id = "create-task-container";
 createTaskDiv.className = "task__create shadow";
@@ -174,6 +253,7 @@ class="task__create__select shadow collapse-tag-container"
 
 addTask.addEventListener("click", () => {
   addTask.after(createTaskDiv);
+  todayTask.removeChild(emptyView);
 
   const createTaskContainer = todayTask.querySelector("#create-task-container");
   const taskTitle = createTaskContainer.querySelector("#task-title");
@@ -190,25 +270,43 @@ addTask.addEventListener("click", () => {
 
   let taskPriorityValue = null;
 
+  let priorityLowClone = priorityLow.cloneNode(true);
+  priorityLowClone.style.width = "3rem";
+  priorityLowClone.style.marginRight = "1rem";
+
   priorityLow.addEventListener("click", () => {
     taskPriorityValue = priorityLow.dataset.priority;
     priorityLow.classList.add("select-priority");
     priorityMedium.classList.remove("select-priority");
     priorityHigh.classList.remove("select-priority");
+    tagContainer.classList.add("collapse-tag-container");
+    createTaskContainer.replaceChild(priorityLowClone, selectTag);
   });
+
+  let priorityMediumClone = priorityMedium.cloneNode(true);
+  priorityMediumClone.style.width = "3rem";
+  priorityMediumClone.style.marginRight = "1rem";
 
   priorityMedium.addEventListener("click", () => {
     taskPriorityValue = priorityMedium.dataset.priority;
     priorityMedium.classList.add("select-priority");
     priorityHigh.classList.remove("select-priority");
     priorityLow.classList.remove("select-priority");
+    tagContainer.classList.add("collapse-tag-container");
+    createTaskContainer.replaceChild(priorityMediumClone, selectTag);
   });
+
+  let priorityHighClone = priorityHigh.cloneNode(true);
+  priorityHighClone.style.width = "3rem";
+  priorityHighClone.style.marginRight = "1rem";
 
   priorityHigh.addEventListener("click", () => {
     taskPriorityValue = priorityHigh.dataset.priority;
     priorityHigh.classList.add("select-priority");
     priorityLow.classList.remove("select-priority");
     priorityMedium.classList.remove("select-priority");
+    tagContainer.classList.add("collapse-tag-container");
+    createTaskContainer.replaceChild(priorityHighClone, selectTag);
   });
 
   selectTag.addEventListener("click", () => {
@@ -234,19 +332,42 @@ addTask.addEventListener("click", () => {
       priorityHigh.classList.remove("select-priority");
       priorityLow.classList.remove("select-priority");
       priorityMedium.classList.remove("select-priority");
+      switch (taskPriorityValue) {
+        case "low":
+          createTaskContainer.replaceChild(selectTag, priorityLowClone);
+          break;
+        case "medium":
+          createTaskContainer.replaceChild(selectTag, priorityMediumClone);
+          break;
+        default:
+          createTaskContainer.replaceChild(selectTag, priorityHighClone);
+          break;
+      }
       taskTitle.value = "";
       taskDescription.value = "";
 
-      getTask();
+      await getTask();
     }
   });
 
   collapseCreate.addEventListener("click", () => {
     todayTask.removeChild(createTaskDiv);
+    todayTask.appendChild(emptyView);
     tagContainer.classList.add("collapse-tag-container");
     tagIcon.className = "fa-solid fa-tag";
     priorityHigh.classList.remove("select-priority");
     priorityLow.classList.remove("select-priority");
     priorityMedium.classList.remove("select-priority");
+    switch (taskPriorityValue) {
+      case "low":
+        createTaskContainer.replaceChild(selectTag, priorityLowClone);
+        break;
+      case "medium":
+        createTaskContainer.replaceChild(selectTag, priorityMediumClone);
+        break;
+      default:
+        createTaskContainer.replaceChild(selectTag, priorityHighClone);
+        break;
+    }
   });
 });

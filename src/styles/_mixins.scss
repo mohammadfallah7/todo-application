@@ -57,6 +57,12 @@
   color: $color;
 }
 
+@mixin font-semi-bold10($color: #7d7d7d) {
+  font-weight: 600;
+  font-size: 10px;
+  color: $color;
+}
+
 @mixin font-regular13($color: #696969) {
   font-weight: 400;
   font-size: 13px;

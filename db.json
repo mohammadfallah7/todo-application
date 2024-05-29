@@ -1,10 +1,24 @@
 {
   "tasks": [
     {
-      "id": "1716908425395",
-      "title": "بوت کمپ",
+      "id": "1716974591910",
+      "title": "بوت کمپ کوئرا",
       "description": "فاز دوم پروژه پایانی",
       "priority": "high",
+      "isDone": false
+    },
+    {
+      "id": "1716974878114",
+      "title": "باشگاه بدنسازی",
+      "description": "دنبال جواد هم برم!",
+      "priority": "medium",
+      "isDone": false
+    },
+    {
+      "id": "1716974948555",
+      "title": "تماس با کوئرا",
+      "description": "روش انجام پروژه رو بپرسم",
+      "priority": "low",
       "isDone": false
     }
   ]
