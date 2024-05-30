@@ -35,15 +35,19 @@
       transform: translate(-50%, -50%);
     }
   }
+
+  @include screen-md {
+    display: none;
+  }
 }
 
 .overlay-menu {
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   top: 0;
   left: 0;
-  bottom: 0;
+  height: 100%;
   width: 30%;
   background-color: #afaeb2ca;
   transition: all 0.4s ease;
@@ -51,7 +55,7 @@
 
 .navbar {
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   top: 0;
   right: 0;
@@ -60,6 +64,32 @@
   background-color: white;
   padding: 1.25rem;
   transition: all 0.4s ease;
+
+  @include screen-md {
+    display: unset;
+    z-index: unset;
+    width: 30%;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    border-radius: $rounded-md;
+  }
+
+  @include screen-lg {
+    width: 25%;
+  }
+
+  @include screen-xl {
+    width: 20%;
+  }
+
+  #user-in-header {
+    display: none;
+
+    @include screen-md {
+      display: block;
+    }
+  }
 
   &__header {
     display: flex;
@@ -74,6 +104,10 @@
       display: flex;
       align-items: center;
     }
+
+    @include screen-md {
+      display: none;
+    }
   }
 
   &__actions {
@@ -83,8 +117,12 @@
     position: absolute;
     left: 1.25rem;
     right: 1.25rem;
-    bottom: 2rem;
+    bottom: 1rem;
     top: 4.5rem;
+
+    @include screen-md {
+      top: 6rem;
+    }
 
     &__list {
       display: flex;
@@ -143,16 +181,17 @@
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          padding: 0.5rem 1.25rem;
+          padding: 0.5rem 0.75rem;
           border-radius: $rounded-md;
           transition: all 0.4s ease;
 
           i {
             @include logo-nav-item(#808080);
+            font-size: 0.75rem;
           }
 
           span {
-            @include font-nav-item(#808080);
+            @include font-nav-item(#808080, 12px);
           }
         }
       }
@@ -178,6 +217,28 @@
   }
 }
 
+main {
+  @include screen-md {
+    position: absolute;
+    right: 33%;
+    width: 67%;
+
+    #user-in-main {
+      display: none;
+    }
+  }
+
+  @include screen-lg {
+    right: 28%;
+    width: 72%;
+  }
+
+  @include screen-xl {
+    right: 23%;
+    width: 77%;
+  }
+}
+
 .user {
   &__inner {
     width: 92%;
@@ -185,6 +246,10 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+
+    @include screen-md {
+      margin: unset;
+    }
   }
 
   &__picture {
@@ -223,6 +288,18 @@
   &__inner {
     width: 92%;
     margin: 0 auto;
+
+    @include screen-lg {
+      width: 80%;
+    }
+
+    @include screen-xl {
+      width: 70%;
+    }
+
+    @include screen-2xl {
+      width: 60%;
+    }
   }
 
   &__title {
@@ -486,6 +563,18 @@
   &__inner {
     width: 92%;
     margin: 0 auto;
+
+    @include screen-lg {
+      width: 80%;
+    }
+
+    @include screen-xl {
+      width: 70%;
+    }
+
+    @include screen-2xl {
+      width: 60%;
+    }
   }
 
   &__title {

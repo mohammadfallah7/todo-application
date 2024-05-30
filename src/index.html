@@ -9,6 +9,7 @@
       src="https://kit.fontawesome.com/c448ef04f4.js"
       crossorigin="anonymous"
     ></script>
+    <script src="scripts/index.js" defer></script>
   </head>
   <body id="application" class="bg-[#FEFEFE]">
     <header class="header">
@@ -25,7 +26,28 @@
 
     <div class="overlay-menu"></div>
 
-    <nav id="menu" class="navbar">
+    <nav id="menu" class="navbar md:shadow">
+      <section id="user-in-header" class="user">
+        <div class="user__wrapper">
+          <div class="user__inner">
+            <div class="user__picture">
+              <img
+                class="user__picture__image"
+                src="../assets/images/user-image.jpg"
+                alt="user image"
+              />
+            </div>
+            <div class="user__information">
+              <span class="user__information__name">سلام، محمد</span>
+              <span
+                id="today-date-header"
+                class="user__information__date"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="navbar__header">
         <a href="index.html" class="navbar__header__logo">کوئرا لیست</a>
         <button id="collapse-menu" class="navbar__header__action">
@@ -104,7 +126,7 @@
     </nav>
 
     <main>
-      <section class="user">
+      <section id="user-in-main" class="user">
         <div class="user__wrapper">
           <div class="user__inner">
             <div class="user__picture">
@@ -148,7 +170,5 @@
         </div>
       </section>
     </main>
-
-    <script src="scripts/index.js"></script>
   </body>
 </html>

@@ -6,6 +6,7 @@ const overlayMenu = document.querySelector(".overlay-menu");
 const lightTheme = document.getElementById("light-theme");
 const darkTheme = document.getElementById("dark-theme");
 const todayDate = document.getElementById("today-date");
+const todayDateHeader = document.getElementById("today-date-header");
 const countTask = document.getElementById("count-task");
 const todayTask = document.getElementById("today-task");
 const addTask = todayTask.querySelector("#add-task");
@@ -68,6 +69,7 @@ function getTodayDate() {
 
 const date = getTodayDate();
 todayDate.textContent = `امروز، ${date.getDay()} ${date.getMonth()} ${date.getYear()}`;
+todayDateHeader.textContent = `امروز، ${date.getDay()} ${date.getMonth()} ${date.getYear()}`;
 
 // Handle Update Task
 function updateTask(id, title, description, priority, isDone = false) {

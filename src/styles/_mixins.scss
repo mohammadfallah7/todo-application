@@ -1,5 +1,35 @@
 @import "variables";
 
+@mixin screen-sm {
+  @media screen and (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin screen-md {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin screen-lg {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin screen-xl {
+  @media screen and (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin screen-2xl {
+  @media screen and (min-width: 1536px) {
+    @content;
+  }
+}
+
 @mixin font-bold16 {
   font-weight: 700;
   font-size: 16px;

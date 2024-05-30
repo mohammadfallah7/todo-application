@@ -91,14 +91,19 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+@media screen and (min-width: 768px) {
+  .header {
+    display: none;
+  }
+}
 
 .overlay-menu {
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   top: 0;
   left: 0;
-  bottom: 0;
+  height: 100%;
   width: 30%;
   background-color: rgba(175, 174, 178, 0.7921568627);
   transition: all 0.4s ease;
@@ -106,7 +111,7 @@
 
 .navbar {
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   top: 0;
   right: 0;
@@ -115,6 +120,35 @@
   background-color: white;
   padding: 1.25rem;
   transition: all 0.4s ease;
+}
+@media screen and (min-width: 768px) {
+  .navbar {
+    display: unset;
+    z-index: unset;
+    width: 30%;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    border-radius: 0.375rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .navbar {
+    width: 25%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .navbar {
+    width: 20%;
+  }
+}
+.navbar #user-in-header {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .navbar #user-in-header {
+    display: block;
+  }
 }
 .navbar__header {
   display: flex;
@@ -129,6 +163,11 @@
   display: flex;
   align-items: center;
 }
+@media screen and (min-width: 768px) {
+  .navbar__header {
+    display: none;
+  }
+}
 .navbar__actions {
   display: flex;
   flex-direction: column;
@@ -136,8 +175,13 @@
   position: absolute;
   left: 1.25rem;
   right: 1.25rem;
-  bottom: 2rem;
+  bottom: 1rem;
   top: 4.5rem;
+}
+@media screen and (min-width: 768px) {
+  .navbar__actions {
+    top: 6rem;
+  }
 }
 .navbar__actions__list {
   display: flex;
@@ -192,16 +236,17 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.375rem;
   transition: all 0.4s ease;
 }
 .navbar__actions__footer__theme__item i {
   color: #808080;
+  font-size: 0.75rem;
 }
 .navbar__actions__footer__theme__item span {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   color: #808080;
 }
 .navbar__actions__footer__logout {
@@ -222,12 +267,40 @@
   color: #525252;
 }
 
+@media screen and (min-width: 768px) {
+  main {
+    position: absolute;
+    right: 33%;
+    width: 67%;
+  }
+  main #user-in-main {
+    display: none;
+  }
+}
+@media screen and (min-width: 1024px) {
+  main {
+    right: 28%;
+    width: 72%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  main {
+    right: 23%;
+    width: 77%;
+  }
+}
+
 .user__inner {
   width: 92%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .user__inner {
+    margin: unset;
+  }
 }
 .user__picture {
   width: 3rem;
@@ -263,6 +336,21 @@
 .task__inner {
   width: 92%;
   margin: 0 auto;
+}
+@media screen and (min-width: 1024px) {
+  .task__inner {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .task__inner {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1536px) {
+  .task__inner {
+    width: 60%;
+  }
 }
 .task__title--large {
   font-weight: 800;
@@ -513,6 +601,21 @@
 .complete-task__inner {
   width: 92%;
   margin: 0 auto;
+}
+@media screen and (min-width: 1024px) {
+  .complete-task__inner {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .complete-task__inner {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1536px) {
+  .complete-task__inner {
+    width: 60%;
+  }
 }
 .complete-task__title {
   margin-bottom: 1rem;
