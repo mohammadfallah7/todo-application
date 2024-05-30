@@ -13,6 +13,10 @@ const emptyView = todayTask.querySelector("#empty-view");
 const notCompletedTaskList = todayTask.querySelector(
   "#not-completed-task-list"
 );
+const completeTaskSection = document.getElementById("complete-task-section");
+const completeTaskList = completeTaskSection.querySelector(
+  "#complete-task-list"
+);
 
 // Handle Toggle Menu
 function handleToggleMenu() {
@@ -130,6 +134,68 @@ async function getTask() {
         میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع کنی!
       </p>`
         : "";
+
+    let completeTaskTitle = document.createElement("div");
+    completeTaskTitle.className = "complete-task__title";
+
+    completeTaskTitle.innerHTML =
+      completedTaskLength == 0
+        ? ""
+        : `
+        <h3 class="complete-task__title--large">تسک های انجام شده</h3>
+        <span class="complete-task__title--small">${completedTaskLength} تسک انجام شده است.</span>
+        `;
+
+    if (completedTaskLength !== 0) {
+      completeTaskSection.insertAdjacentElement(
+        "afterbegin",
+        completeTaskTitle
+      );
+
+      const completeTaskFragment = new DocumentFragment();
+
+      completedTask.forEach((task) => {
+        let CompletedPriorityBg = "";
+
+        switch (task.priority) {
+          case "low":
+            CompletedPriorityBg = "#11a483";
+            break;
+          case "medium":
+            CompletedPriorityBg = "#ffaf37";
+            break;
+          default:
+            CompletedPriorityBg = "#ff5f37";
+            break;
+        }
+
+        let completeTaskItem = document.createElement("li");
+        completeTaskItem.className = "complete-task__list__item";
+        completeTaskItem.innerHTML = `
+          <div class="complete-task__list__item__content">
+            <div id="complete-pri-bg"
+              class="complete-task__list__item__content__priority"
+            ></div>
+            <button class="complete-task__list__item__content__select">
+              <i class="fa-solid fa-check"></i>
+            </button>
+            <h2 class="complete-task__list__item__content__title">
+              ${task.title}
+            </h2>
+          </div>
+          <button onclick="deleteTask(${task.id})" class="complete-task__list__item__delete">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        `;
+
+        let completePriBg = completeTaskItem.querySelector("#complete-pri-bg");
+        completePriBg.style.backgroundColor = CompletedPriorityBg;
+
+        completeTaskFragment.appendChild(completeTaskItem);
+      });
+
+      completeTaskList.appendChild(completeTaskFragment);
+    }
 
     if (notCompletedTaskLength !== 0) {
       const taskFragment = new DocumentFragment();
