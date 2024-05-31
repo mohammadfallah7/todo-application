@@ -35,14 +35,12 @@
   font-size: 16px;
 }
 
-@mixin font-nav-item($color: #525252, $font-size: 14px) {
+@mixin font-nav-item($font-size: 14px) {
   font-weight: 600;
   font-size: $font-size;
-  color: $color;
 }
 
-@mixin logo-nav-item($color: #525252) {
-  color: $color;
+@mixin logo-nav-item {
 }
 
 @mixin font-extra-bold18($color: #242424) {
@@ -51,16 +49,14 @@
   color: $color;
 }
 
-@mixin font-extra-bold16($color: #242424) {
+@mixin font-extra-bold16 {
   font-weight: 800;
   font-size: 16px;
-  color: $color;
 }
 
-@mixin font-extra-bold15($color: #242424) {
+@mixin font-extra-bold15 {
   font-weight: 800;
   font-size: 15px;
-  color: $color;
 }
 
 @mixin font-extra-bold14($color: #242424) {
@@ -69,16 +65,14 @@
   color: $color;
 }
 
-@mixin font-semi-bold14($color: #7d7d7d) {
+@mixin font-semi-bold14 {
   font-weight: 600;
   font-size: 14px;
-  color: $color;
 }
 
-@mixin font-semi-bold13($color: #7d7d7d) {
+@mixin font-semi-bold13 {
   font-weight: 600;
   font-size: 13px;
-  color: $color;
 }
 
 @mixin font-semi-bold12($color: #7d7d7d) {
@@ -99,10 +93,9 @@
   color: $color;
 }
 
-@mixin font-regular12($color: #696969) {
+@mixin font-regular12 {
   font-weight: 400;
   font-size: 12px;
-  color: $color;
 }
 
 @mixin font-regular11($color: #696969) {

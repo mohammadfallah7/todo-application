@@ -18,6 +18,22 @@ const completeTaskSection = document.getElementById("complete-task-section");
 const completeTaskList = completeTaskSection.querySelector(
   "#complete-task-list"
 );
+const elements = document.documentElement;
+
+document.addEventListener("DOMContentLoaded", () => {
+  let savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    elements.classList.toggle("dark", savedTheme === "dark");
+  }
+
+  if (savedTheme == "dark") {
+    lightTheme.style.backgroundColor = "#0C1B31";
+    darkTheme.style.backgroundColor = "#002247";
+  } else {
+    darkTheme.style.backgroundColor = "#f7f7f7";
+    lightTheme.style.backgroundColor = "#ffffff";
+  }
+});
 
 // Handle Toggle Menu
 function handleToggleMenu() {
@@ -32,15 +48,27 @@ collapseMenu.addEventListener("click", handleToggleMenu());
 overlayMenu.addEventListener("click", handleToggleMenu());
 
 // Handle toggle theme
-function handleToggleTheme() {
-  return function () {
-    lightTheme.classList.toggle("active-toggle-theme");
-    darkTheme.classList.toggle("active-toggle-theme");
-  };
-}
+darkTheme.addEventListener("click", () => {
+  lightTheme.classList.remove("active-toggle-theme");
+  darkTheme.classList.add("active-toggle-theme");
 
-darkTheme.addEventListener("click", handleToggleTheme());
-lightTheme.addEventListener("click", handleToggleTheme());
+  elements.classList.add("dark");
+  localStorage.setItem("theme", "dark");
+
+  lightTheme.style.backgroundColor = "#0C1B31";
+  darkTheme.style.backgroundColor = "#002247";
+});
+
+lightTheme.addEventListener("click", () => {
+  darkTheme.classList.remove("active-toggle-theme");
+  lightTheme.classList.add("active-toggle-theme");
+
+  elements.classList.remove("dark");
+  localStorage.setItem("theme", "light");
+
+  darkTheme.style.backgroundColor = "#f7f7f7";
+  lightTheme.style.backgroundColor = "#ffffff";
+});
 
 // Handle Date
 function getTodayDate() {
@@ -144,7 +172,7 @@ async function getTask() {
       completedTaskLength == 0
         ? ""
         : `
-        <h3 class="complete-task__title--large">تسک های انجام شده</h3>
+        <h3 class="complete-task__title--large text-[#242424] dark:text-white">تسک های انجام شده</h3>
         <span class="complete-task__title--small">${completedTaskLength} تسک انجام شده است.</span>
         `;
 
@@ -157,41 +185,42 @@ async function getTask() {
       const completeTaskFragment = new DocumentFragment();
 
       completedTask.forEach((task) => {
-        let CompletedPriorityBg = "";
+        let completedPriBg = "";
 
         switch (task.priority) {
           case "low":
-            CompletedPriorityBg = "#11a483";
+            completedPriBg = "#11a483";
             break;
           case "medium":
-            CompletedPriorityBg = "#ffaf37";
+            completedPriBg = "#ffaf37";
             break;
           default:
-            CompletedPriorityBg = "#ff5f37";
+            completedPriBg = "#ff5f37";
             break;
         }
 
         let completeTaskItem = document.createElement("li");
-        completeTaskItem.className = "complete-task__list__item";
+        completeTaskItem.className =
+          "complete-task__list__item bg-[#ffffff] dark:bg-[#091120] border dark:border-none dark:shadow";
         completeTaskItem.innerHTML = `
           <div class="complete-task__list__item__content">
             <div id="complete-pri-bg"
               class="complete-task__list__item__content__priority"
             ></div>
-            <button class="complete-task__list__item__content__select">
-              <i class="fa-solid fa-check"></i>
+            <button class="complete-task__list__item__content__select border-[#cccccc] dark:border-none bg-light-primary">
+              <i class="fa-solid fa-check text-white dark:text-dark-primary"></i>
             </button>
-            <h2 class="complete-task__list__item__content__title">
+            <h2 class="complete-task__list__item__content__title text-[#242424] dark:text-white">
               ${task.title}
             </h2>
           </div>
           <button onclick="deleteTask(${task.id})" class="complete-task__list__item__delete">
-            <i class="fa-solid fa-trash"></i>
+            <i class="fa-solid fa-trash text-[#525252] dark:text-white"></i>
           </button>
         `;
 
         let completePriBg = completeTaskItem.querySelector("#complete-pri-bg");
-        completePriBg.style.backgroundColor = CompletedPriorityBg;
+        completePriBg.style.backgroundColor = completedPriBg;
 
         completeTaskFragment.appendChild(completeTaskItem);
       });
@@ -226,13 +255,14 @@ async function getTask() {
         }
 
         let notCompletedTaskItem = document.createElement("li");
-        notCompletedTaskItem.classList.add("task__list__item");
+        notCompletedTaskItem.className =
+          "task__list__item bg-[#ffffff] dark:bg-[#091120] border dark:border-none dark:shadow";
         notCompletedTaskItem.innerHTML = `
         <div class="task__list__item__content">
           <div id="pri-bg" class="task__list__item__content__priority"></div>
           <button id="task-done" class="task__list__item__content__select"></button>
           <div class="task__list__item__content__information">
-            <h2 class="task__list__item__content__information__title">
+            <h2 class="task__list__item__content__information__title text-[#242424] dark:text-white">
               ${task.title}
             </h2>
             <span id="pri-label" class="task__list__item__content__information__label">
@@ -245,7 +275,7 @@ async function getTask() {
             </p>
           </div>
         </div>
-        <button id="task-action" class="task__list__item__action">
+        <button id="task-action" class="task__list__item__action text-[#525252] dark:text-white">
           <i class="fa-solid fa-ellipsis-vertical"></i>
         </button>
         `;
@@ -273,12 +303,13 @@ async function getTask() {
         let taskAction = notCompletedTaskItem.querySelector("#task-action");
         let taskModify = document.createElement("div");
         taskModify.id = "task-modify";
-        taskModify.className = "task__list__item__modify shadow";
+        taskModify.className =
+          "task__list__item__modify shadow bg-white dark:bg-[#0B192D] border dark:border-none";
         taskModify.innerHTML = `
-          <button id="delete-task" class="task__list__item__modify__action">
+          <button id="delete-task" class="task__list__item__modify__action text-[#5c5f61] dark:text-white">
             <i class="fa-solid fa-trash"></i>
           </button>
-          <button id="edit-task" class="task__list__item__modify__action">
+          <button id="edit-task" class="task__list__item__modify__action text-[#5c5f61] dark:text-white">
             <i class="fa-solid fa-pen-to-square"></i>
           </button>
         `;
@@ -334,27 +365,28 @@ function createNewTask(title, description, priority) {
 // Handle Add Task
 const createTaskDiv = document.createElement("div");
 createTaskDiv.id = "create-task-container";
-createTaskDiv.className = "task__create shadow";
+createTaskDiv.className =
+  "task__create shadow border bg-white dark:bg-transparent dark:border-[#3d3d3d]";
 createTaskDiv.innerHTML = `<input
-class="task__create__title"
+class="task__create__title bg-transparent text-[#323232] dark:text-white dark:placeholder:text-white"
 type="text"
 name="title"
 id="task-title"
 placeholder="نام تسک"
 />
 <textarea
-class="task__create__description"
+class="task__create__description text-[#646466] dark:text-[#83878F] bg-transparent"
 name="description"
 id="task-description"
 placeholder="توضیحات"
 ></textarea>
-<button id="select-tag" class="task__create__tags">
+<button id="select-tag" class="task__create__tags border dark:border-[#3d3d3d]">
 <i class="fa-solid fa-tag"></i>
 <span>تگ ها</span>
 </button>
 <div
 id="tag-container"
-class="task__create__select shadow collapse-tag-container"
+class="task__create__select shadow bg-white dark:bg-[#0B192D] border dark:border-[#3d3d3d] collapse-tag-container"
 >
 <button
   data-priority="low"
@@ -378,14 +410,14 @@ class="task__create__select shadow collapse-tag-container"
   بالا
 </button>
 </div>
-<hr />
+<hr class="dark:border-[#3d3d3d]" />
 <div class="task__create__actions">
-<button id="create-task" class="task__create__actions__add">
+<button id="create-task" class="task__create__actions__add bg-light-primary dark:bg-dark-primary">
   اضافه کردن تسک
 </button>
 <button
   id="collapse-create"
-  class="task__create__actions__collapse"
+  class="task__create__actions__collapse bg-[#f5f5f5] dark:bg-dark-primary"
 >
   <i class="fa-solid fa-xmark"></i>
 </button>

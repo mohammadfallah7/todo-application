@@ -11,10 +11,12 @@
     ></script>
     <script src="scripts/index.js" defer></script>
   </head>
-  <body id="application" class="bg-[#FEFEFE]">
+  <body id="application" class="bg-[#FEFEFE] dark:bg-[#060C18]">
     <header class="header">
       <div class="header__wrapper">
-        <div class="header__inner container bg-white shadow">
+        <div
+          class="header__inner container bg-white dark:bg-[#091120] dark:text-white shadow"
+        >
           <button id="toggle-menu" class="header__inner__nav">
             <i class="fa-solid fa-bars"></i>
           </button>
@@ -26,7 +28,7 @@
 
     <div class="overlay-menu"></div>
 
-    <nav id="menu" class="navbar md:shadow">
+    <nav id="menu" class="navbar bg-white dark:bg-[#091120] md:shadow">
       <section id="user-in-header" class="user">
         <div class="user__wrapper">
           <div class="user__inner">
@@ -38,7 +40,10 @@
               />
             </div>
             <div class="user__information">
-              <span class="user__information__name">سلام، محمد</span>
+              <span
+                class="user__information__name text-[#242424] dark:text-white"
+                >سلام، محمد</span
+              >
               <span
                 id="today-date-header"
                 class="user__information__date"
@@ -48,7 +53,7 @@
         </div>
       </section>
 
-      <section class="navbar__header">
+      <section class="navbar__header dark:text-white">
         <a href="index.html" class="navbar__header__logo">کوئرا لیست</a>
         <button id="collapse-menu" class="navbar__header__action">
           <i class="fa-solid fa-xmark"></i>
@@ -56,47 +61,63 @@
       </section>
 
       <section class="navbar__actions">
-        <ul class="navbar__actions__list">
-          <li class="navbar__actions__list__item">
+        <ul class="navbar__actions__list text-[#525252] dark:text-white">
+          <li
+            class="navbar__actions__list__item bg-[#f5faff] dark:bg-[#041933] text-light-primary dark:text-white"
+          >
             <i class="fa-solid fa-house navbar__actions__list__item__logo"></i>
             <span class="navbar__actions__list__item__title">خانه</span>
           </li>
-          <li class="navbar__actions__list__item">
+          <li
+            class="navbar__actions__list__item hover:bg-[#f5faff] dark:hover:bg-[#041933]"
+          >
             <i
               class="fa-solid fa-list-check navbar__actions__list__item__logo"
             ></i>
             <span class="navbar__actions__list__item__title">تسک ها</span>
           </li>
-          <li class="navbar__actions__list__item">
+          <li
+            class="navbar__actions__list__item hover:bg-[#f5faff] dark:hover:bg-[#041933]"
+          >
             <i
               class="fa-solid fa-calendar-days navbar__actions__list__item__logo"
             ></i>
             <span class="navbar__actions__list__item__title">تقویم</span>
           </li>
-          <li class="navbar__actions__list__item">
+          <li
+            class="navbar__actions__list__item hover:bg-[#f5faff] dark:hover:bg-[#041933]"
+          >
             <i
               class="fa-solid fa-chart-line navbar__actions__list__item__logo"
             ></i>
             <span class="navbar__actions__list__item__title">گزارشات</span>
           </li>
-          <li class="navbar__actions__list__item">
+          <li
+            class="navbar__actions__list__item hover:bg-[#f5faff] dark:hover:bg-[#041933]"
+          >
             <i class="fa-solid fa-gear navbar__actions__list__item__logo"></i>
             <span class="navbar__actions__list__item__title">تنظیمات</span>
           </li>
-          <li class="navbar__actions__list__item">
+          <li
+            class="navbar__actions__list__item hover:bg-[#f5faff] dark:hover:bg-[#041933]"
+          >
             <i
               class="fa-solid fa-headset navbar__actions__list__item__logo"
             ></i>
             <span class="navbar__actions__list__item__title">پشتیبانی</span>
           </li>
-          <li class="navbar__actions__list__item">
+          <li
+            class="navbar__actions__list__item hover:bg-[#f5faff] dark:hover:bg-[#041933]"
+          >
             <i class="fa-solid fa-user navbar__actions__list__item__logo"></i>
             <span class="navbar__actions__list__item__title">پروفایل</span>
           </li>
         </ul>
 
         <div class="navbar__actions__footer">
-          <div class="navbar__actions__footer__theme">
+          <div
+            class="navbar__actions__footer__theme bg-[#f7f7f7] dark:bg-[#0C1B31]"
+          >
             <button
               id="light-theme"
               class="navbar__actions__footer__theme__item active-toggle-theme"
@@ -113,9 +134,11 @@
             </button>
           </div>
 
-          <hr />
+          <hr class="dark:border-[#2F3132]" />
 
-          <div class="navbar__actions__footer__logout">
+          <div
+            class="navbar__actions__footer__logout text-[#525252] dark:text-white hover:bg-[#f5faff] dark:hover:bg-[#041933]"
+          >
             <i
               class="fa-solid fa-arrow-right-from-bracket navbar__actions__footer__logout__logo"
             ></i>
@@ -137,7 +160,10 @@
               />
             </div>
             <div class="user__information">
-              <span class="user__information__name">سلام، محمد</span>
+              <span
+                class="user__information__name text-[#242424] dark:text-white"
+                >سلام، محمد</span
+              >
               <span id="today-date" class="user__information__date"></span>
             </div>
           </div>
@@ -148,10 +174,15 @@
         <div class="task__wrapper">
           <div id="today-task" class="task__inner">
             <div class="task__title">
-              <h3 class="task__title--large">تسک های امروز</h3>
+              <h3 class="task__title--large text-[#242424] dark:text-white">
+                تسک های امروز
+              </h3>
               <span id="count-task" class="task__title--small"></span>
             </div>
-            <button id="add-task" class="task__add">
+            <button
+              id="add-task"
+              class="task__add text-light-primary dark:text-[#57A8FF] dark:border-[#203E62] border-[#cccccc]"
+            >
               <i class="fa-solid fa-plus task__add__icon"></i>
               <span class="task__add__title">افزودن وظیفه جدید</span>
             </button>
@@ -164,7 +195,6 @@
       <section class="complete-task">
         <div class="complete-task__wrapper">
           <div id="complete-task-section" class="complete-task__inner">
-            <div id="complete-task-title" class="complete-task__title"></div>
             <ul id="complete-task-list" class="complete-task__list"></ul>
           </div>
         </div>
