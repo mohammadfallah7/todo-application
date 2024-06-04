@@ -1,3 +1,53 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "title": "بوت کمپ فرانت اند",
+      "description": "توسعه فاز دوم پروژه پایانی",
+      "priority": "high",
+      "isDone": false,
+      "id": "1717510521829"
+    },
+    {
+      "title": "باشگاه فوتسال",
+      "description": "دنبال جواد هم برم!",
+      "priority": "medium",
+      "isDone": false,
+      "id": "1717510572832"
+    },
+    {
+      "title": "تماس با امیرحسین دارابی",
+      "description": "توضیحاتی در مورد پروژه پایانی",
+      "priority": "low",
+      "isDone": false,
+      "id": "1717510593586"
+    },
+    {
+      "title": "حل تمرین",
+      "description": "تمرینات مربوط به هفته هفتم",
+      "priority": "high",
+      "isDone": true,
+      "id": "1717510655598"
+    },
+    {
+      "title": "مرور JavaScript",
+      "description": "مباحث مربوط به DOM",
+      "priority": "low",
+      "isDone": true,
+      "id": "1717510758911"
+    },
+    {
+      "title": "خرید شارژر",
+      "description": "از فروشگاه آیتل",
+      "priority": "medium",
+      "isDone": true,
+      "id": "1717510829688"
+    },
+    {
+      "title": "ارائه پروژه",
+      "description": "در اسکای روم ",
+      "priority": "high",
+      "isDone": false,
+      "id": "1717516628247"
+    }
+  ]
 }

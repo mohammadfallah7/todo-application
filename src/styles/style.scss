@@ -533,6 +533,90 @@ main {
       }
     }
   }
+
+  &__edit {
+    border-radius: $rounded-lg;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    transition: all 0.4s ease;
+
+    &__title {
+      @include font-semi-bold14;
+      outline: none;
+      margin-right: 1rem;
+    }
+
+    &__description {
+      resize: none;
+      outline: none;
+      @include font-regular12;
+      margin-right: 1rem;
+    }
+
+    &__tags {
+      display: flex;
+      width: 5rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      margin-right: 1rem;
+      border-radius: $rounded-md;
+
+      i {
+        color: #afaeb2;
+      }
+
+      span {
+        @include font-semi-bold13;
+      }
+    }
+
+    &__select {
+      margin-right: 1rem;
+      display: flex;
+      width: 12rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.25rem 0.5rem;
+      border-radius: $rounded-lg;
+
+      &__item {
+        padding: 0.25rem 0.5rem;
+        border-radius: $rounded-lg;
+      }
+
+      &--low {
+        @include font-semi-bold12(#11a483);
+        background-color: #c3fff1;
+      }
+
+      &--medium {
+        @include font-semi-bold12(#ffaf37);
+        background-color: #ffefd6;
+      }
+
+      &--high {
+        @include font-semi-bold12(#ff5f37);
+        background-color: #ffe2db;
+      }
+    }
+
+    &__actions {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      margin: 0 1rem;
+
+      &__add {
+        padding: 0.5rem 0.75rem;
+        border-radius: $rounded-md;
+        @include font-semi-bold12(#fff);
+      }
+    }
+  }
 }
 
 .complete-task {

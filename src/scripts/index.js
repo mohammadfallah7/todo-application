@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     darkTheme.style.backgroundColor = "#f7f7f7";
     lightTheme.style.backgroundColor = "#ffffff";
   }
+
+  getTask();
 });
 
 // Handle Toggle Menu
@@ -331,6 +333,106 @@ async function getTask() {
           await getTask();
         });
 
+        let editTaskItem = taskModify.querySelector("#edit-task");
+        let editTaskContainer = document.createElement("div");
+        editTaskContainer.id = "edit-task-container";
+        editTaskContainer.className =
+          "task__edit shadow border bg-white dark:bg-transparent dark:border-[#3d3d3d]";
+        editTaskContainer.innerHTML = `
+        <input
+        class="task__edit__title bg-transparent text-[#323232] dark:text-white dark:placeholder:text-white"
+        type="text"
+        name="title"
+        id="edit-task-title"
+        placeholder="نام تسک"
+      />
+      <textarea
+        class="task__edit__description text-[#646466] dark:text-[#83878F] bg-transparent"
+        name="description"
+        id="edit-task-description"
+        placeholder="توضیحات"
+      ></textarea>
+      <button
+        id="edit-select-tag"
+        class="task__edit__tags"
+      >
+        <i class="fa-solid fa-xmark"></i>
+        <span></span>
+      </button>
+      <hr class="dark:border-[#3d3d3d]" />
+      <div class="task__edit__actions">
+        <button
+          id="edit-task-btn"
+          class="task__edit__actions__add bg-light-primary dark:bg-dark-primary"
+        >
+          ویرایش تسک
+        </button>
+      </div>
+        `;
+
+        editTaskItem.addEventListener("click", () => {
+          notCompletedTaskItem.after(editTaskContainer);
+
+          const taskTitle = editTaskContainer.querySelector("#edit-task-title");
+          const taskDescription = editTaskContainer.querySelector(
+            "#edit-task-description"
+          );
+          const selectTag = editTaskContainer.querySelector("#edit-select-tag");
+          const selectTagIcon = editTaskContainer.querySelector(
+            "#edit-select-tag > i"
+          );
+          const selectTagText = editTaskContainer.querySelector(
+            "#edit-select-tag > span"
+          );
+          const editTaskBtn = editTaskContainer.querySelector("#edit-task-btn");
+
+          let selectTagTitle;
+          let selectTagColor;
+          let selectTagBg;
+
+          switch (task.priority) {
+            case "high":
+              selectTagTitle = "بالا";
+              selectTagColor = "#ff5f37";
+              selectTagBg = "#ffe2db";
+              break;
+            case "medium":
+              selectTagTitle = "متوسط";
+              selectTagColor = "#ffaf37";
+              selectTagBg = "#ffefd6";
+              break;
+            default:
+              selectTagTitle = "پایین";
+              selectTagColor = "#11a483";
+              selectTagBg = "#c3fff1";
+              break;
+          }
+
+          selectTag.style.backgroundColor = selectTagBg;
+          selectTagIcon.style.color = selectTagColor;
+          selectTagText.style.color = selectTagColor;
+          selectTagText.style.fontSize = "12px";
+          selectTagText.textContent = selectTagTitle;
+
+          taskTitle.value = task.title;
+          taskDescription.value = task.description;
+
+          editTaskBtn.addEventListener("click", async () => {
+            if (taskTitle.value !== "" && taskDescription.value !== "") {
+              console.log("update Task");
+
+              await updateTask(
+                task.id,
+                taskTitle.value,
+                taskDescription.value,
+                task.priority
+              );
+
+              await getTask();
+            }
+          });
+        });
+
         taskFragment.appendChild(notCompletedTaskItem);
       });
 
@@ -340,8 +442,6 @@ async function getTask() {
     console.error(error);
   }
 }
-
-getTask();
 
 // Handle Create New Task
 function createNewTask(title, description, priority) {
