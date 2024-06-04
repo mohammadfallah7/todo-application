@@ -2,52 +2,38 @@
   "tasks": [
     {
       "title": "بوت کمپ فرانت اند",
-      "description": "توسعه فاز دوم پروژه پایانی",
+      "description": "توسعه فاز اول پروژه",
       "priority": "high",
-      "isDone": false,
-      "id": "1717510521829"
+      "isDone": true,
+      "id": "1717518832195"
     },
     {
-      "title": "باشگاه فوتسال",
-      "description": "دنبال جواد هم برم!",
-      "priority": "medium",
-      "isDone": false,
-      "id": "1717510572832"
+      "id": "1717518855121",
+      "title": "بوت کمپ فرانت اند",
+      "description": "توسعه فاز دوم پروژه",
+      "priority": "high",
+      "isDone": false
     },
     {
-      "title": "تماس با امیرحسین دارابی",
-      "description": "توضیحاتی در مورد پروژه پایانی",
+      "id": "1717518883640",
+      "title": "تماس با فرشاد",
+      "description": "توضیحاتی در مورد نحوه ی ارائه پروژه",
       "priority": "low",
-      "isDone": false,
-      "id": "1717510593586"
+      "isDone": false
     },
     {
-      "title": "حل تمرین",
-      "description": "تمرینات مربوط به هفته هفتم",
-      "priority": "high",
-      "isDone": true,
-      "id": "1717510655598"
-    },
-    {
-      "title": "مرور JavaScript",
-      "description": "مباحث مربوط به DOM",
+      "id": "1717518956054",
+      "title": "گیت هاب",
+      "description": "پروژه های پایانی رو public کنم!",
       "priority": "low",
-      "isDone": true,
-      "id": "1717510758911"
+      "isDone": false
     },
     {
-      "title": "خرید شارژر",
-      "description": "از فروشگاه آیتل",
+      "id": "1717519006517",
+      "title": "باشگاه بدنسازی",
+      "description": "جواد رو هم ببرم!",
       "priority": "medium",
-      "isDone": true,
-      "id": "1717510829688"
-    },
-    {
-      "title": "ارائه پروژه",
-      "description": "در اسکای روم ",
-      "priority": "high",
-      "isDone": false,
-      "id": "1717516628247"
+      "isDone": false
     }
   ]
 }
