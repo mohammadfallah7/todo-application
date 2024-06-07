@@ -23,7 +23,9 @@ This is the final project of [quera](https://www.quera.org) frontend bootcamp.
 - Tailwind CSS
 - Mobile-first workflow
 - Dark & Light Theme
-- Swiperjs
+- JSON-Server
+- npm
+- moment-jalali
 - JavaScript DOM
 
 ### Continued development
